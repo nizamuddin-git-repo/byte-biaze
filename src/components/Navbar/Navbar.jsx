@@ -18,7 +18,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 fixed z-10">
+    <div className="navbar bg-base-100 shadow-lg px-4 sm:px-8 fixed z-10">
       <div className="flex-1">
         <Link
           to="/"

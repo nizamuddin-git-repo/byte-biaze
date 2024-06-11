@@ -6,9 +6,9 @@ const Hero = () => {
       <div className="hero-content text-center">
         <div className="max-w-lg">
           <h1 className="text-5xl font-bold">
-            Welcome to <span className="bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text ">ByteBlaze</span>
+            Welcome to <span className="bg-gradient-to-r bg-300% from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient ">ByteBlaze</span>
           </h1>
-          <p className="py-6">
+          <p className="py-6 text-xs font-bold">
             ByteBlaze is tha bridge between tha complex world of technology and
             tha curious minds eager to undersstnd it
           </p>
