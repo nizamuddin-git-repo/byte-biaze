@@ -1,10 +1,12 @@
 import  { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
-
+import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
+import Loader from "../../Loader/Loader";
+import { MdBookmarkAdd } from "react-icons/md";
+import { saveBlog } from "../../../utils";
 const Blog = () => {
 
   const [tabIndex, setIndex] = useState(0)
-
+  const navigation = useNavigation()
   const blog = useLoaderData();
 
   const {
@@ -13,8 +15,16 @@ const Blog = () => {
     reading_time_minutes,
     public_reactions_count,
     published_at,
+    tags
+
   } = blog;
 
+  const handleBookMark = (blog) => {
+    console.log(blog);
+    saveBlog(blog)
+  }
+
+  if(navigation.state === 'loading') return <Loader></Loader>
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 dark:bg-gray-00 dark:text-gray-900">
@@ -79,34 +89,16 @@ const Blog = () => {
               </svg>
               <span>Author</span>
             </Link>
+             {/* bookmark button */}
+          <div onClick={()=> handleBookMark(blog)} className="bg-primary rounded-full p-4 ml-5 hover:bg-opacity-30 bg-opacity-20 cursor-pointer hover:scale-105 overflow-hidden ">
+            <MdBookmarkAdd size={20} className="text-secondary"></MdBookmarkAdd>
+          </div>
           </div>
         </div>
         <Outlet></Outlet>
       </article>
       <div>
-        <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600 dark:text-gray-50"
-          >
-            #MambaUI
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600 dark:text-gray-50"
-          >
-            #TailwindCSS
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600 dark:text-gray-50"
-          >
-            #Angular
-          </a>
-        </div>
+        
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Related posts</h4>
           <ul className="ml-4 space-y-1 list-disc">

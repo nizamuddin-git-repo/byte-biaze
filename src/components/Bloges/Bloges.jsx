@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import BlogsCard from "../BlogsCard/BlogsCard";
+import Loader from "../Loader/Loader";
 
 const Bloges = () => {
 
-    // const [blogs, setBlogs] = useState([])
+    const navigation = useNavigation()
 
-    // useEffect(()=>{
-    //     fetch('https://dev.to/api/articles')
-    //     .then(res => res.json())
-    //     .then(data => setBlogs(data))
-    // }, [])
     const blogs = useLoaderData()
     console.log(blogs);
+
+  if(navigation.state === 'loading') return <Loader></Loader>
 
   return (
     <div>
@@ -44,7 +41,7 @@ const Bloges = () => {
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
            
            {
-            blogs.map(blog=> <BlogsCard key={blog.id} blog={blog}></BlogsCard>)
+            blogs.slice(1, 19).map(blog=> <BlogsCard key={blog.id} blog={blog}></BlogsCard>)
            }
 
           </div>
